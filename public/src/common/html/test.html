@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <script src="/dist/bundle.js"></script>
+<!--<script src='http://localhost:9090/webpack-dev-server.js'></script>-->
+  <script src="../js/vue.js"></script>
+  <div id='app'>
+    <ol>
+      <my-div v-for='app in text' v-bind:app='app'></my-div>
+    </ol>
+    {{now}}
+
+<!-- kebab-case in HTML -->
+<child myMessage="的我的文档!"></child>
+  </div>
+  <div id="input">
+<input v-model.number="age" type="text">
+  </div>
+</body>
+<script>
+  Vue.component('my-div', {
+    data() { return { count: 0 } },
+    methods: {
+      fe(dw) {
+     
+        this.app.mes = ++this.count;
+      }
+    }, props: ['app'], template: "<div  @click.stop='count++'>{{count}}</div>"
+  })
+
+
+Vue.component('child', {
+  // camelCase in JavaScript
+  props: ['myMessage'],
+  template: `<span>{{ myMessage }}</span>`
+})
+
+
+  new Vue({
+    el: '#app',
+    data: {
+      text: [{ mes: '老大' }, { mes: '老大1' }, { mes: '老三' }],
+
+    },
+    computed: {
+      now: function () {
+        return Date.now() + this.text[0].mes
+      }
+    },
+
+    methods: {
+      //    now: function () {
+      //   return Date.now()
+      // },
+
+    },
+
+  })
+
+
+</script>
+
+</html>
