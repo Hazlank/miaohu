@@ -5,10 +5,10 @@
 // ????plugins
 
 
-
+var path=require('path');
 var webpack = require('webpack');
 // var HtmlWebpackPlugin = require('html-webpack-plugin')
-var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;  //导致很慢
+// var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;  //慢
 var proxyIp="http://172.23.171.2:8080"
 
 module.exports = {
@@ -28,6 +28,7 @@ module.exports = {
         },
         {
             test: /\.js$/,
+            exclude: /node_modules/,
             use: ["babel-loader"],
 
         },
@@ -39,7 +40,7 @@ module.exports = {
             test: /\.(eot|svg|ttf|woff|woff2)$/,
             loader: 'file-loader'
         },
-        { test: /\.(scss|sass)$/, loader: 'style-loader!css-loader!sass-loader' },
+        { test: /\.sass$/, loader: 'style-loader!css-loader!sass-loader' },
         {
             test: /\.vue$/,
             loader: 'vue-loader',
@@ -48,7 +49,8 @@ module.exports = {
                     scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
                     sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax', // <style lang="sass">
 
-                }
+                },
+                preserveWhitespace: false
             }
         }
 
@@ -59,9 +61,10 @@ module.exports = {
         contentBase: '../public/',
         compress: true,
         watchContentBase: true,
-        port: 9090, //端口你可以自定义
+        port: 9090, 
         proxy:{
-            "/oauth/*":'http://172.23.171.2:8080'
+            '/oauth/*':'http://172.23.171.2:8080',
+          
         }
     },
     plugins: [
@@ -73,12 +76,17 @@ module.exports = {
         })
     ],
     resolve: {
+        //简写扩展名
         extensions: [" ", ".js", ".vue"],
+        //
         alias: {
-            'vue$': 'vue/dist/vue.common'
-        }   
+            'vue$': 'vue/dist/vue.common',
+            '@components':path.resolve('../public/src/components'),
+            '@common':path.resolve('../public/src/common'),
+        }    
     },
 
 
 }
+
 

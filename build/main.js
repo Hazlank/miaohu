@@ -1,10 +1,10 @@
 // 运行依赖库
-import Vue from "vue/dist/vue.common.js";
+import Vue from "vue";
 import axios from 'axios';
 import VueRouter from "vue-router";
 //Vue 组件
-import header from "../public/src/components/homePage/header";
-import article from "../public/src/components/homePage/article";
+import header from "@components/homePage/header";
+import article from "@components/homePage/article";
 
 
 

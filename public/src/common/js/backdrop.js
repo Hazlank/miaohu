@@ -1,7 +1,6 @@
 ;
 export const backdrop=(function(){
     var WIDTH = document.body.offsetWidth, HEIGHT = document.body.offsetHeight, POINT = 35;
-	
 	var canvas = document.getElementById('backdrop');
 	canvas.width = WIDTH,
 	canvas.height = HEIGHT;
@@ -99,4 +98,3 @@ export const backdrop=(function(){
 			draw();
 		}, 16);
 })
-	

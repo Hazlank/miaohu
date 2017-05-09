@@ -1,9 +1,10 @@
 {
-  "name": "program",
+  "name": "programsd",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "d": "fanyi word",
     "start": "cd build && webpack-dev-server --inline --hot --watch",
     "pro": " cd build && webpack --watch --progress --p"
   },
@@ -13,6 +14,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "jquery": "^3.1.1",
+    "node-sass": "^4.5.2",
     "nprogress": "^0.2.0",
     "vue": "^2.2.4",
     "vue-router": "^2.3.1",
@@ -20,19 +22,12 @@
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
-    "babel-eslint": "^7.2.3",
     "babel-loader": "^6.4.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.2.1",
-    "babel-preset-stage-3": "^6.24.1",
     "babel-runtime": "^6.23.0",
     "css-loader": "^0.27.3",
-    "eslint": "^3.19.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-html": "^2.0.1",
-    "eslint-plugin-import": "^2.2.0",
     "file-loader": "^0.11.0",
     "html-webpack-plugin": "^2.28.0",
     "open-browser-webpack-plugin": "0.0.5",

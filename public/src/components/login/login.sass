@@ -14,6 +14,9 @@ body
     clear: both
 
 
+.index-component
+    height: 100%
+
 #login_contain
     white-space: nowrap
     height: 100%
@@ -81,6 +84,17 @@ body
     color: #555
     outline: none
     font-size: 14px
+    &::-webkit-input-placeholder
+        color: #ccc;
+        -webkit-text-fill-color: #ccc;
+
+.group_input .div_input .captcha img
+    position: absolute;
+    top: 50%;
+    right: .5em;
+    margin-top: -19px;
+    width: 100px;
+    height: 38px;
 
 .group_input label
     position: absolute;
@@ -151,7 +165,18 @@ body
     padding: 1px 0
     border: 1px solid #d5d5d5
     border-radius: 3px
-    position: relative 
+    position: relative
+    .input_captchaT
+        visibility: visible
+        height: 46px
+        border-top: 1px solid #e8e8e8!important
+
+.input_captcha
+        transition: height .7s cubic-bezier(0.42,0,0.58,1)       
+        height: 0px
+        overflow: hidden
+        visibility: hidden
+        border-top: none!important
 
 .group_input .input_top
     border-top: 1px solid #e8e8e8
@@ -194,10 +219,10 @@ body
     transition: left .15s ease-in
 
 .head_choice .navs-login .navs-slider-bar
-    left: 104px
+    left: 101px
 
 .head_choice .navs-register .navs-slider-bar
-    left: 28px
+    left: 30px
 
 .login_chang .agreement-tip
     margin-top: 21px
@@ -261,7 +286,7 @@ body
 
 
 .footer a,.footer span
-    color: #aebdc9
+    color: #aebdc9!important
 
 .footer .dot 
     margin: 0 3px
@@ -301,3 +326,77 @@ body
     transform: translate(-13px,0)
     transition: .25s ease-out
     visibility: hidden
+
+//wrapper
+
+.miaohu-wrapper
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    -webkit-box-align: start;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    overflow: auto;
+    .wrapper-index
+            opacity: .9
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #fff;
+            -ms-filter: "alpha(Opacity=0)";
+            z-index: 98;
+            -webkit-transition: opacity .2s ease-out;
+            transition: opacity .2s ease-out;
+            width: 100%;
+            height: 100%;    
+    .wrapper-phone
+            margin-top: 14vh;
+            width: 300px;
+            color: #787878;
+            font-size: 14px;
+            background-color: #fff;
+            border: 1px solid #cbcbcb;
+            border-radius: 5px;
+            box-shadow: 0 0 15px 0 rgba(0,0,0,.3);
+            outline: 0;
+            z-index: 99;
+            -ms-filter: "alpha(Opacity=0)";
+            -webkit-transform: translate(0,20px);
+            -ms-transform: translate(0,20px);
+            transform: translate(0,20px);
+            -webkit-transition: .3s ease-out;
+            transition: .3s ease-out;
+            .phone-title
+                position: relative;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                width: 100%;
+                height: 42px;
+                text-align: center;
+                line-height: 1;
+                -webkit-transition: .3s ease-out;
+                transition: .3s ease-out;
+            .phone-title h1
+                font-size: 16px;
+                line-height: 18px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            .phone-title h2
+                font-size: 14px;
+                font-weight: 400;
+
+
+
+

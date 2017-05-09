@@ -23,8 +23,8 @@
                     <button class="show"
                             :class='changeClass'>
                         <span>
-                        下载知乎 App
-                    </span>
+                            下载知乎 App
+                        </span>
                     </button>
                 </div>
             </div>
@@ -64,21 +64,18 @@
             <span class="dot">·</span>
             <a href="http://zhstatic.zhihu.com/assets/zhihu/publish-license.jpg"
                target="_blank">出版物经营许可证</a>
- 
         </footer>
     </div>
 </template>
 
 <script>
 import loginChange from "./loginChange";
-import Vue from "vue/dist/vue.common";
 import { bus } from "./bus";//vue事件驱动需要用到相同类
-import axios from 'axios';
+import {  mapGetters } from "vuex"
 
-
-import VueRouter from "vue-router"
 
 export default {
+
     data() {
         /**
          * login|register识别参数
@@ -89,7 +86,12 @@ export default {
             changeClass: (this.$route.path.replace(/\//, "")) == "signin" ? "navs-login" : "navs-register",
         }
     },
+
+    computed:{
+        ...mapGetters(["wrapper"]),
+    },
     methods: {
+      
         /**
          * 组件根据type转换元素
          * type有两种参数判断register和login
@@ -99,6 +101,8 @@ export default {
             bus.$emit("type-change", type);
             this.changeClass = "navs-" + type;
         },
+     
+
     }
 }
 
@@ -109,12 +113,9 @@ export default {
 
 </script>
 
-<style>
-@import "../../common/css/fontIcon/iconfont.css";
-</style>
 
-<style lang='sass' rel='stylesheet/sass'>
-@import "../../common/css/common.sass"
+<style lang='sass'>
+
 //公共sass，css reset
 @import "login.sass"
 

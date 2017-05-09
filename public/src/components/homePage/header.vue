@@ -6,7 +6,6 @@
             </div>
             <div class="nav-search f-left">
                 <input type="text"
-                       value=""
                        maxlength="100"
                        placeholder="搜索你感兴趣的内容..."
                        class="nav-searchinput">

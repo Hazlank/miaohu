@@ -9,7 +9,8 @@
                        placeholder="姓名"
                        id="register-user"
                        v-model="registerData.username"
-                       @focus="errorHide('username')">
+                       @focus="errorHide('username')"
+                       @keyup="getCaptcha">
                 <label>{{registerMsg.msg.username}}</label>
             </div>
             <div class="div_input input_top"
@@ -18,8 +19,9 @@
                  ref="phone">
                 <input type="text"
                        @focus="errorHide('phone')"
-                       placeholder="手机号（仅支持中国大陆）"
-                       v-model="registerData.phone">
+                       placeholder="手机号或邮箱"
+                       v-model="registerData.phone"
+                       @keyup="getCaptcha">
                 <label>{{registerMsg.msg.phone}}</label>
             </div>
             <div class="div_input input_top"
@@ -29,9 +31,11 @@
                 <input type="password"
                        placeholder="密码（不少于 6 位）"
                        v-model="registerData.password"
-                       @focus="errorHide('password')">
+                       @focus="errorHide('password')"
+                       @keyup="getCaptcha">
                 <label>{{registerMsg.msg.password}}</label>
             </div>
+           <captcha-component ref="captcha"></captcha-component>
         </div>
     
         <div class="group_click"
@@ -46,13 +50,16 @@
         <div class="group_input"
              v-if="loginType==='Pc'">
             <div class="div_input">
-                <input type="text"
-                       placeholder="手机号或邮箱" v-model="loginData.phone">
+                <input type="text"  @keyup="getCaptcha"
+                       placeholder="手机号或邮箱"
+                       v-model="loginData.phone">
             </div>
             <div class="div_input input_top">
-                <input type="password"
-                       placeholder="密码" v-model="loginData.password">
+                <input type="password"  @keyup="getCaptcha"
+                       placeholder="密码"
+                       v-model="loginData.password">
             </div>
+            <captcha-component ref="captcha"></captcha-component>
         </div>
         <div class="group_input"
              v-else>
@@ -69,7 +76,8 @@
                         class="send-code-button">获取验证码</button>
             </div>
         </div>
-        <div class="group_click" @click="login">
+        <div class="group_click"
+             @click="login">
             <span>登录</span>
         </div>
         <div class="identity-phone"
@@ -101,16 +109,16 @@
 </template>
 
 <script>
-import Vue from "vue/dist/vue.common.js";
-import axios from 'axios';
-import nprogress  from "nprogress";
 
+import nprogress from "nprogress";
+import { mapActions } from "vuex"
 import { bus } from "./bus";
-import { apiDomain } from "../../common/js/public.js";
+import { apiDomain } from "@common/js/public.js";
 
 export default {
 
     created() {
+
         this.choiceType = (this.$route.path.replace(/\//, "")) == "signin" ? "login" : "register";
         bus.$on("type-change", b => {
             this.choiceType = b;
@@ -127,7 +135,8 @@ export default {
                 username: "",
                 password: "",
                 phone: "",
-                imageCaptcha: ""
+                imageCaptcha: "",
+                captcha: false,
             },
 
             //注册结果信息
@@ -138,25 +147,30 @@ export default {
                     imageCaptcha: "",
                     password: "",
                     phone: "",
+
                 },
                 error: "",
             },
-            loginData:{
+            loginData: {
                 phone: "",
                 password: "",
-            }
+            },
+
         }
 
     },
     methods: {
-        Community() { this.social = this.social ? false : true },        //社区账号显示
-        Changelogin(t) { this.loginType = t },                           //账号登录or手机验证码登录
+
+        //社区账号显示
+        Community() { this.social = this.social ? false : true },
+        //账号登录or手机验证码登录  
+        Changelogin(t) { this.loginType = t },
         register() {
             let that = this
             let registerData = that.registerData;
-            nprogress.start()
-            nprogress.set(.4)
-            axios({
+            //短信验证码输入框
+            this.wrapperDisplay();
+            this.$ajax({
                 method: 'get',
                 url: `${apiDomain}/register`,
                 params: registerData
@@ -166,23 +180,32 @@ export default {
             }).catch(error => console.log(error))
         },
         errorHide(type) {
-            let that=this;
+            let that = this;
             this.$refs[type].classList.remove('label-error')
-            setTimeout(function(){
-                that.registerMsg.msg[type]='';
-            },250);
+            setTimeout(function () {
+                that.registerMsg.msg[type] = '';
+            }, 250);
         },
-        login(){
-            let loginData = this.loginData
-
-     
-            axios({
+        login() {
+            let loginData = this.loginData;
+            this.$ajax({
                 method: "get",
                 url: `${apiDomain}/user/login`,
-                params: loginData
-            }).then(res=>{res.data.code==200?location.href='/signin.html':flase})
+                params: loginData,
+            }).then(res => { res.data.code == 200 ? location.href = '/signin.html' : flase })
         },
-    }
+        getCaptcha() {
+            var data = this.registerData;
+            if (data.username && data.phone && data.password)
+                this.$refs.captcha.$emit("captcha");
+        },
+        ...mapActions(["wrapperDisplay"]),
+    },
+    watch: {
+        '$route'(to) {
+
+        }
+    },
 }
 
 
@@ -190,6 +213,3 @@ export default {
 
 </script>
 
-<style>
-
-</style>

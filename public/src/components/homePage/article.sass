@@ -351,5 +351,73 @@ h1, h2, h3, h4, h5
     margin-right: 3px;
 
 .zg-link-gray-normal
- color: $deepgray!important
+    color: $deepgray!important
 
+
+
+
+//右侧栏
+.contain-sidebar
+    position: relative;
+    margin: 0 0 0 -270px;
+    width: 270px;
+    & .sidebar-operate:first-child
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+
+.sidebar-section
+    position: relative;
+    padding-top: 15px;
+    margin-bottom: 15px;
+    border-top: 1px solid #eee;
+    h3
+        margin-bottom: 10px
+        a
+            font-weight: 400;
+            font-size: 12px;
+            float: right;
+            margin-top: 1px;
+            color: #698ebf;
+            &:hover
+                text-decoration: underline
+
+.sidebar-avatar
+        width: 25px;
+        height: 25px;
+        border-radius: 3px;
+        background-color: #eee;
+        float: left;
+        vertical-align: top!important;
+        margin-right: 8px;
+.sidebar-label
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;    
+        display: block;
+        padding-right: 10px;
+        max-width: none;
+.contain-sidebar .sidebar-link
+        display: block;
+        height: 25px;
+        line-height: 25px;
+        padding: 5px 0;
+        padding-left: 10px;
+        color: #666;
+        &:hover
+            color: #259;
+            background: #eff6fa;
+            border-radius: 3px;
+
+.sidebar-operate
+        margin-bottom: 10px;
+        .sidebar-label
+            display: initial;
+        .sidebar-link
+            padding: 0;
+            margin-bottom: 3px;
+        .iconfont 
+            font-size: 15px
+            margin-right: 7px;
+            width: 15px;
+            height: 15px;
+        
