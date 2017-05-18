@@ -1,0 +1,412 @@
+.miaohu_height
+    height: 100%
+
+
+
+body
+    text-align: center
+    /* overflow-x: hidden; */
+    background: #f7fafc
+    padding-bottom: 60px
+    color: #555
+    
+.clear_b
+    clear: both
+
+
+.index-component
+    height: 100%
+
+#miaohu_contain
+    white-space: nowrap
+    height: 100%
+    margin-bottom: -42px
+    &:before
+        content: ''
+        display: inline-block
+        height: 100%
+        vertical-align: middle
+        margin-right: -.25em
+
+  
+
+#miaohu_contain .miaohu_log
+    margin: 0 auto
+    width: 160px
+    height: 74px
+    background: url(../../common/images/Websitelogo.png) no-repeat
+    background-size: 
+    
+.miaohu_middle
+    display: inline-block
+    vertical-align: middle
+    min-height: 590px
+
+#c_piture
+    position: absolute
+    top: 0
+    z-index: -1
+    width: 100%
+    height: 100%
+
+#miaohu_contain .miaohu_chang
+    width: 298px
+    margin: 0 auto
+   
+
+
+.miaohu_head .head_title
+    margin: 30px 0 20px
+    font-weight: 400
+    font-size: 18px
+    line-height: 1
+
+.navs-slider a
+    width: 4em
+    line-height: 35px
+    font-size: 18px
+    text-align: center
+    display: inline-block
+    opacity: .5
+    transition: opacity .15s
+    &:hover
+        opacity: .7
+
+.group_input .div_input input
+    border: 0
+    border-radius: 0
+    box-shadow: none
+    background: #fff
+    padding: 1em .8em
+    width: 100%
+    box-sizing: border-box
+    line-height: 19px
+    color: #555
+    outline: none
+    font-size: 14px
+    &::-webkit-input-placeholder
+        color: #ccc;
+        -webkit-text-fill-color: #ccc;
+
+.group_input .div_input .captcha img
+    position: absolute;
+    top: 50%;
+    right: .5em;
+    margin-top: -19px;
+    width: 100px;
+    height: 38px;
+
+.group_input label
+    position: absolute;
+    top: 0;
+    right: 8px;
+    padding: 0 8px;
+    line-height: 48px;
+    color: #c33;
+    cursor: text;
+    background: #fff;
+    background: -webkit-linear-gradient(left,rgba(255,255,255,0),#fff 8px);
+    background: linear-gradient(to right,rgba(255,255,255,0),#fff 8px);
+    visibility: hidden;
+    opacity: 0;
+    -ms-filter: "alpha(Opacity=0)";
+    -webkit-transform: translate(20px,0);
+    -ms-transform: translate(20px,0);
+    transform: translate(20px,0);
+    -webkit-transition: .25s ease-out;
+    transition: .25s ease-out;
+    font-size: 14px;
+
+#miaohu_contain .label-error label
+    visibility: visible;
+    opacity: 1;
+    -ms-filter: "alpha(Opacity=100)";
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);
+    
+    
+
+
+.label-leave-active
+    visibility: hidden;
+    opacity: 0;
+    -ms-filter: "alpha(Opacity=0)";
+    -webkit-transform: translate(20px,0);
+    -ms-transform: translate(20px,0);
+    transform: translate(20px,0);
+    -webkit-transition: .25s ease-out;
+    transition: .25s ease-out;
+
+
+
+.send-code-button
+    display: inline-block;
+    width: 96px;
+    padding: 14px 8px;
+    line-height: 19px;
+    color: #5ca5eb;
+    background: #fff;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    &:before
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 200px;
+        width: 1px;
+        height: 40px;
+        background: #e9e9e9;
+        -webkit-transform: translateY(-20px);
+        -ms-transform: translateY(-20px);
+        transform: translateY(-20px);
+
+.group_input
+    padding: 1px 0
+    border: 1px solid #d5d5d5
+    border-radius: 3px
+    position: relative
+    .input_captchaT
+        visibility: visible
+        height: 46px
+        border-top: 1px solid #e8e8e8!important
+    .input_captcha label 
+        right: 85px 
+    .input_captcha.label-error label
+        right: 93px 
+
+
+.input_captcha
+        transition: height .7s cubic-bezier(0.42,0,0.58,1)       
+        height: 0px
+        overflow: hidden
+        visibility: hidden
+        border-top: none!important
+
+.group_input .input_top
+    border-top: 1px solid #e8e8e8
+    position: relative
+    font-size: 0
+
+.input_top .sm[type='text']
+    width: 200px
+    
+
+.group_click span
+    margin-top: 18px
+    display: inline-block
+    background: #0f88eb
+    box-shadow: none
+    border: 0
+    border-radius: 3px
+    line-height: 41px
+    color: #fff
+    width: 100%
+    font-size: 15px
+    cursor: pointer
+    text-shadow: 0 1px 1px rgba(0,0,0,.2)
+    &:hover
+        background: #55abed
+
+.navs-slider
+    width: 200px
+    margin: 0 auto
+    position: relative
+    margin-bottom: 15px
+
+.navs-slider-bar
+    position: absolute
+    bottom: 0
+    margin: 0 .8em
+    width: 2.7em
+    height: 2px
+    background: #0f88eb
+    -webkit-transition: left .15s ease-in
+    transition: left .15s ease-in
+    left: 28px
+    transition: translate3d(0,0,0,0)
+    -webkit-transition: translate3d(0,0,0,0);
+
+.head_choice .navs-login .navs-slider-bar
+    left: 104px
+
+.head_choice .navs-register .navs-slider-bar
+    left: 28px
+
+.miaohu_chang .agreement-tip
+    margin-top: 21px
+    font-size: 13px
+    text-align: center
+    color: #999
+
+.miaohu_chang .agreement-tip a
+    color: #698ebf
+
+.QRcode
+    width: 300px
+    margin: 0 auto
+
+.QRcode .show
+    width: 100%
+    height: 41px
+    line-height: 39px
+    color: #5fa6e5
+    border: 1px solid #96c2e9
+    border-radius: 3px
+    cursor: pointer
+    outline: none
+    background: initial
+
+.QRcode .navs-login
+    margin-top: 24px
+
+.QRcode .navs-register
+    margin-top: 48px
+    
+.identity-phone,.problem
+    font-size: 14px
+    margin-top: 18px 
+    text-align: initial
+
+.problem .social-account
+    cursor: pointer
+    margin-right: 20px
+    color: #787878
+    
+
+.identity-phone .signin-phone
+    color: #5ca5e8
+    background: transparent
+    border: 0
+    cursor: pointer
+    outline: none
+    float: left
+    padding: 0 
+    font-size: 14px
+
+.identity-phone a
+    float: right
+    color: #555
+
+.footer
+    font-size: 12px
+    line-height: 21px
+    text-align: center
+
+
+.footer a,.footer span
+    color: #aebdc9!important
+
+.footer .dot 
+    margin: 0 3px
+
+.head_choice .router-link-active
+    color: #0f88eb
+    opacity: 1!important
+
+.problem a
+    color: #B3B3B4
+    margin-right: 25px
+
+.problem .social-sina a,.problem .social-qq a
+    font-size: 19px
+
+
+.problem .social-div a
+    cursor: pointer
+    &:hover
+        color: #959595
+
+#miaohu_contain .problem .social-trans
+    opacity: 1
+    -ms-filter: "alpha(Opacity=100)"
+    visibility: visible
+    -webkit-transform: translate(7px,0)
+    -ms-transform: translate(7px,0)
+    transform: translate(7px,0)
+    
+.problem .social-div
+    position: absolute
+    display: inline
+    opacity: 0
+    -ms-filter: "alpha(Opacity=0)"
+    -webkit-transform: translate(-13px,0)
+    -ms-transform: translate(-13px,0)
+    transform: translate(-13px,0)
+    transition: .25s ease-out
+    visibility: hidden
+
+//wrapper
+
+.miaohu-wrapper
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    -webkit-box-align: start;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    overflow: auto;
+    .wrapper-index
+            opacity: .9
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #fff;
+            -ms-filter: "alpha(Opacity=0)";
+            z-index: 98;
+            -webkit-transition: opacity .2s ease-out;
+            transition: opacity .2s ease-out;
+            width: 100%;
+            height: 100%;    
+    .wrapper-phone
+            margin-top: 14vh;
+            width: 300px;
+            color: #787878;
+            font-size: 14px;
+            background-color: #fff;
+            border: 1px solid #cbcbcb;
+            border-radius: 5px;
+            box-shadow: 0 0 15px 0 rgba(0,0,0,.3);
+            outline: 0;
+            z-index: 99;
+            -ms-filter: "alpha(Opacity=0)";
+            -webkit-transform: translate(0,20px);
+            -ms-transform: translate(0,20px);
+            transform: translate(0,20px);
+            -webkit-transition: .3s ease-out;
+            transition: .3s ease-out;
+            .phone-title
+                position: relative;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                width: 100%;
+                height: 42px;
+                text-align: center;
+                line-height: 1;
+                -webkit-transition: .3s ease-out;
+                transition: .3s ease-out;
+            .phone-title h1
+                font-size: 16px;
+                line-height: 18px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            .phone-title h2
+                font-size: 14px;
+                font-weight: 400;
+
+
+
+
