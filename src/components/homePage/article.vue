@@ -1,11 +1,12 @@
 <template>
     <div id="homepage">
+        <home-header></home-header>
         <div class="contain-center clearfloat">
             <div class="f-left">
                 <div class="contain-inner">
                     <div class="HomeEntry clearfloat">
                         <div class="HomeEntry-avatar f-left">
-                            <img src="/src/common/images/Userheader.png" alt="">
+                            <img src="/static/Userheader.png" alt="">
                         </div>
                         <div class="HomeEntry-box">
                             <div class="HomeEntry-arrow">
@@ -132,7 +133,7 @@
                     <h3>知乎专栏</h3>
                     <ul>
                         <li>
-                            <a class="sidebar-link" href="#"><img class="sidebar-avatar" src="/src/common/images/sidebar.jpg"><span class="sidebar-label">专栏・发现</span></a>
+                            <a class="sidebar-link" href="#"><img class="sidebar-avatar" src="/static/sidebar.jpg"><span class="sidebar-label">专栏・发现</span></a>
                         </li>
                     </ul>
                 </section>
@@ -162,21 +163,24 @@
                 </section>
                 <section class="sidebar-section">
                     <ul>
-                        <a class="sidebar-link" href="#"><img class="sidebar-avatar" src="/src/common/images/topic.jpg"><span class="sidebar-label">下载 App</span></a>
+                        <a class="sidebar-link" href="#"><img class="sidebar-avatar" src="/static/topic.jpg"><span class="sidebar-label">下载 App</span></a>
                     </ul>
                 </section>
             </div>
         </div>
+        <wrapper></wrapper>
     </div>
 </template>
 <script>
+    import header from "./header"
+    import wrapper from "../wrapper"
     export default {
         data() {
             return {
                 data: [{
                     topic: {
                         id: '/',
-                        avatar: "/src/common/images/topic.jpg",
+                        avatar: "/static/topic.jpg",
                         name: "JavaScript",
                     },
                     article: {
@@ -197,7 +201,7 @@
                 }, {
                     topic: {
                         id: '/',
-                        avatar: "/src/common/images/topic.jpg",
+                        avatar: "/static/topic.jpg",
                         name: "JavaScript",
                     },
                     article: {
@@ -218,7 +222,7 @@
                 }, {
                     topic: {
                         id: '/',
-                        avatar: "/src/common/images/topic.jpg",
+                        avatar: "/static/topic.jpg",
                         name: "JavaScript",
                     },
                     article: {
@@ -239,55 +243,59 @@
                 }, ],
                 sidebar: {
                     live: [{
-                            img: '/src/common/images/sidebar.jpg',
+                            img: '/static/sidebar.jpg',
                             msg: '如何让你的观点更易被他人接受？',
                             href: '#'
                         },
                         {
-                            img: '/src/common/images/sidebar.jpg',
+                            img: '/static/sidebar.jpg',
                             msg: '如何去美国学习',
                             href: '#'
                         },
                         {
-                            img: '/src/common/images/sidebar.jpg',
+                            img: '/static/sidebar.jpg',
                             msg: '怎么辞职',
                             href: '#'
                         }
                     ],
                     table: [{
-                            img: '/src/common/images/sidebar.jpg',
+                            img: '/static/sidebar.jpg',
                             msg: 'dwdwdd',
                             href: '#'
                         },
                         {
-                            img: '/src/common/images/sidebar.jpg',
+                            img: '/static/sidebar.jpg',
                             msg: 'dwdw',
                             href: '#'
                         },
                         {
-                            img: '/src/common/images/sidebar.jpg',
+                            img: '/static/sidebar.jpg',
                             msg: '怎么辞dddddddd职',
                             href: '#'
                         }
                     ],
                     book: [{
-                            img: '/src/common/images/sidebar.jpg',
+                            img: '/static/sidebar.jpg',
                             msg: '如何让你的观dddd点更易被他人接受？',
                             href: '#'
                         },
                         {
-                            img: '/src/common/images/sidebar.jpg',
+                            img: '/static/sidebar.jpg',
                             msg: '如何去美国学vvv习',
                             href: '#'
                         },
                         {
-                            img: '/src/common/images/sidebar.jpg',
+                            img: '/static/sidebar.jpg',
                             msg: 'bb',
                             href: '#'
                         }
                     ],
                 }
             }
+        },
+        components: {
+            homeHeader:header,
+            wrapper
         }
     }
 </script>

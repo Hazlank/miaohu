@@ -69,15 +69,12 @@
 <script>
     import captcha from "../captcha"
     import nprogress from "nprogress";
-    import {
-        mapActions
-    } from "vuex"
-    import {
-        bus
-    } from "./bus";
-    import {
-        apiDomain
-    } from "@/common/js/public.js";
+
+    import { mapActions }  from "vuex";
+
+    import { bus } from "./bus";
+    import { apiDomain } from "@/common/js/public.js";
+    
     export default {
         created() {
             this.choiceType = (this.$route.path.replace(/\//, "")) == "login" ? "login" : "register";
@@ -123,10 +120,12 @@
             Changelogin(t) {
                 this.loginType = t
             },
+            
             register() {
                 let that = this
                 let registerData = that.registerData;
                 //短信验证码输入框
+                 that.wrapperDisplay('wrapperRegister')
                 this.$ajax({
                     method: 'post',
                     url: `${apiDomain}/register/valid`,
@@ -168,11 +167,12 @@
                 else
                     if (data.username && data.phone && data.password){this.$refs[`${type}-Captcha`].$emit('getCaptcha', type)}
             },
-            ...mapActions(["wrapperDisplay"]),
+             ...mapActions(["wrapperDisplay"]),
         },
         components: {
             captchaComponent: captcha
-        }
+        },
+       
     }
 </script>
 

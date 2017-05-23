@@ -22,7 +22,6 @@
         captchaState:false,
         captcha: false,
         captchaAdress: `${apiDomain}/captcha?${new Date().getTime()}`,
-
       }
     },
     methods: {

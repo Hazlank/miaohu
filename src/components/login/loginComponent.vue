@@ -58,7 +58,6 @@
     import wrapper from "@/components/wrapper"
     import canvas from "./canvas";
     import {bus} from "./bus"; //vue事件驱动需要用到相同类
-    import {mapGetters} from "vuex"
 
     export default {
         data() {
@@ -70,9 +69,6 @@
             return {
                 changeClass: (this.$route.path.replace(/\//, "")) == "login" ? "navs-login" : "navs-register",
             }
-        },
-        computed: {
-            ...mapGetters(["wrapper"]),
         },
         methods: {
             /**

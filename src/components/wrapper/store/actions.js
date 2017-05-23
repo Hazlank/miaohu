@@ -1,1 +1,1 @@
-export const wrapperDisplay=({ commit })=>commit('wrapperDisplay');
+export const wrapperDisplay=({ commit },type)=>commit('wrapperDisplay',type);

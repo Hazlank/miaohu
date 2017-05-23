@@ -34,7 +34,7 @@ body
     margin: 0 auto
     width: 160px
     height: 74px
-    background: url(../../common/images/Websitelogo.png) no-repeat
+    background: url(/static/Websitelogo.png) no-repeat
     background-size: 
     
 .miaohu_middle
@@ -337,41 +337,74 @@ body
     transition: .25s ease-out
     visibility: hidden
 
-//wrapper
 
-.miaohu-wrapper
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: flex;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    -webkit-box-align: start;
-    align-items: flex-start;
+.wrapper-index
+    opacity: .9
     position: fixed;
-    top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 99;
-    overflow: auto;
-    .wrapper-index
-            opacity: .9
-            position: fixed;
-            left: 0;
-            top: 0;
-            background-color: #fff;
-            -ms-filter: "alpha(Opacity=0)";
-            z-index: 98;
-            -webkit-transition: opacity .2s ease-out;
-            transition: opacity .2s ease-out;
+    top: 0;
+    background-color: #fff;
+    -ms-filter: "alpha(Opacity=0)";
+    z-index: 98;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    width: 100%;
+    height: 100%;           
+    .wrapper-input
+            position: relative;
+            border-bottom: 1px solid #eee;
+            &:first-child
+                border-top: 1px solid #eee;
+            &:last-child input
+                width: 206px
+    .wrapper-input input
+            padding: 15px 8px;
+            height: 48px;
             width: 100%;
-            height: 100%;    
+            font-size: 14px;
+            line-height: 18px;
+            color: #787878;
+            border: 0;
+            outline: 0;
+            box-sizing: border-box;
+            &::-webkit-input-placeholder
+                color: #ccc;
+                -webkit-text-fill-color: #ccc;
+    .send-code
+            position: relative;
+            z-index: 2;
+            float: right;
+            width: 94px;
+            height: 48px;
+            color: #ababab;
+            background-color: #f7f7f7;
+            border: 0;
+            outline: 0;
+    .wrapper-submit
+            padding: 22px 0;
+            text-align: center;
+            button
+                display: inline-block; 
+                background-color: #0077d9;
+                padding: 8px 16px;
+                font-size: 14px;
+                line-height: 1;
+                color: #fff;
+                border: 0;
+                border-radius: 3px;
+                outline: 0;
+                cursor: pointer;
+    .wrapper-close
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+
+                
+
+
     .wrapper-phone
+            margin: 0 auto;
             margin-top: 14vh;
             width: 300px;
             color: #787878;
@@ -379,15 +412,14 @@ body
             background-color: #fff;
             border: 1px solid #cbcbcb;
             border-radius: 5px;
-            box-shadow: 0 0 15px 0 rgba(0,0,0,.3);
+            box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
             outline: 0;
             z-index: 99;
             -ms-filter: "alpha(Opacity=0)";
-            -webkit-transform: translate(0,20px);
-            -ms-transform: translate(0,20px);
-            transform: translate(0,20px);
-            -webkit-transition: .3s ease-out;
+            -webkit-transform: translate(0, 20px);
+            transform: translate(0, 20px);
             transition: .3s ease-out;
+            position: relative;
             .phone-title
                 position: relative;
                 padding-top: 25px;
@@ -405,7 +437,7 @@ body
                 margin-bottom: 10px;
             .phone-title h2
                 font-size: 14px;
-                font-weight: 400;
+                font-weight: 400; 
 
 
 
