@@ -49,7 +49,7 @@
                                     <div class="zhihu-article-topic">
                                         来自话题:
                                         <a :href="`/src/topic/$['topic'].id`">{{$['topic'].name}}
-                                                                        </a>
+                                                                            </a>
                                     </div>
                                     <h2 class="zhihu-article-title">
                                         <a>{{$['article'].title}}</a>
@@ -57,16 +57,16 @@
                                     <div class="zhihu-artivle-qusetion">
                                         <div class="zhihu-article-vote-count">
                                             <a href="#">
-                                                                                {{$['article'].vote}}
-                                                                            </a>
+                                                                                    {{$['article'].vote}}
+                                                                                </a>
                                         </div>
                                         <div class="zhihu-artivle-userinfo">
                                             <a :href="$['author'].href">
-                                                                                {{$['author'].name}}
-                                                                            </a>
+                                                                                    {{$['author'].name}}
+                                                                                </a>
                                             <span>
-                                                                                {{$['author'].bio}}
-                                                                            </span>
+                                                                                    {{$['author'].bio}}
+                                                                                </span>
                                         </div>
                                         <div class="zhihu-qusetion-contain">
                                             <img :src="$['author'].img" alt="" v-if="$['author'].img">
@@ -81,13 +81,13 @@
                                         <a class="active"><i class="iconfont icon-jia"></i>关注问题</a>
                                         <a class="marginL">
                                             <i class="iconfont icon-liuyan">
-                                                                            </i>{{$['article'].comment}}条评论
+                                                                                </i>{{$['article'].comment}}条评论
                                         </a>
                                         <span class="hide">
-                                                                            <a class="marginL"><i class="iconfont icon-xin"></i>感谢</a>
-                                                                            <a class="marginL"><i class="iconfont icon-fenxiang"></i>转发</a>
-                                                                            <a class="marginL"><i class="iconfont icon-qizhixian"></i>收藏</a>
-                                                                            <span class="zhihu-dot">•</span>
+                                                                                <a class="marginL"><i class="iconfont icon-xin"></i>感谢</a>
+                                                                                <a class="marginL"><i class="iconfont icon-fenxiang"></i>转发</a>
+                                                                                <a class="marginL"><i class="iconfont icon-qizhixian"></i>收藏</a>
+                                                                                <span class="zhihu-dot">•</span>
                                         <a>没有帮助</a>
                                         <span class="zhihu-dot">•</span>
                                         <a>举报</a>
@@ -174,7 +174,14 @@
 <script>
     import header from "./header"
     import wrapper from "../wrapper"
+    import axios from "axios"
     export default {
+        created() {
+            this.$ajax({
+                url: 'http://112.74.111.33:8080/user/info/',
+                method: 'get',
+            }).then(d => console.log(d.data))
+        },
         data() {
             return {
                 data: [{
@@ -294,7 +301,7 @@
             }
         },
         components: {
-            homeHeader:header,
+            homeHeader: header,
             wrapper
         }
     }
