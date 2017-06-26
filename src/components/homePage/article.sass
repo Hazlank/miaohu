@@ -95,6 +95,46 @@ h1, h2, h3, h4, h5
 
 .zhihu-qusetion-summary
     cursor: pointer
+    blockquote,pre
+        margin: 0;
+        padding: 0;
+    ul,ol
+        padding-left: 1.5em!important;
+    blockquote
+        border-left: 4px solid #ccc;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        padding-left: 16px;
+    pre
+        background-color: #23241f;
+        color: #f8f8f2;
+        overflow: visible;
+        white-space: pre-wrap;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        padding: 5px 10px;
+    ol li
+        counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+        counter-increment: list-num;
+        padding-left: 1.5em;
+        &:before
+            content: counter(list-num,decimal) ".";
+            margin-left: -1.5em;
+    ul li:before
+        content: "\2022";
+    li:before
+        display: inline-block;
+        margin-right: .3em;
+        text-align: right;
+        white-space: nowrap;
+        width: 1.2em;
+
+.ql-editing
+    left: 50%!important;
+    top: 50%!important; 
+    margin-top: -19px!important; 
+    margin-left: -160px!important;
+
 
 .zhihu-article-operate
     padding: 5px 0;
