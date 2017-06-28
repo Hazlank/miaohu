@@ -8,33 +8,59 @@
                 </div>
             </header>
             <span class="wrapper-close" @click="wrapperDisplay">
-                                X
-                            </span>
+                X
+            </span>
             <div class="wrapper-content">
                 <div class="wrapper-input">
-                    <input type="text" placeholder="手机号">
+                    <input type="text" placeholder="手机号" v-model="phone">
                 </div>
                 <div class="wrapper-input">
-                    <input type="text" placeholder="6位数验证码">
+                    <input type="text" placeholder="6位数验证码" v-model="phoneCaptcha">
                     <button type="button" class="send-code">重发验证码</button>
                 </div>
             </div>
             <footer class="wrapper-submit">
-                <button>进入知乎</button>
+                <button @click="register">进入知乎</button>
             </footer>
         </section>
     </div>
 </template>
 
 <script>
-    import {
-        mapActions
-    } from "vuex"
-    export default {
-        methods: {
-            ...mapActions(["wrapperDisplay"]),
+import {
+    mapActions
+} from "vuex"
+import { apiDomain } from "@/common/js/public.js";
+import qs from 'querystring';
+export default {
+    data() {
+        return {
+            phone: '',
+            phoneCaptcha: '',
+        }
+    },
+
+    methods: {
+        phoneNub(phone) {
+            this.phone = phone;
         },
-    }
+        register() {
+            let that = this;
+            let registerData = that.$parent.$parent.$refs['loginChange'].registerData;
+            registerData.phoneCaptcha = this.phoneCaptcha
+            this.$ajax({
+                method: 'post',
+                url: `${apiDomain}register`,
+                data: qs.stringify(registerData),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+            }).then(data => { console.log(data); })
+
+        },
+        ...mapActions(["wrapperDisplay"]),
+    },
+}
 </script>
 
 

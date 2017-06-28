@@ -9,6 +9,7 @@ let state = {
     wrapper: false,
     wrapperRegister: false,
     wrapperQuestion: false,
+    
 };
 
 

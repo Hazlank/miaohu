@@ -3,7 +3,7 @@
       
         <div class="wrapper-index">
         </div>
-        <phone-wrapper v-if="wrapperRegister"></phone-wrapper>
+        <phone-wrapper ref="phoneCaptcha" v-if="wrapperRegister"></phone-wrapper>
         <question-wrapper v-if="wrapperQuestion"></question-wrapper>
     </div>
 </template>

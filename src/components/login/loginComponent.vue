@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class='miaohu_chang'>
-                        <login-change></login-change>
+                        <login-change ref="loginChange"></login-change>
                     </div>
                     <div class="QRcode">
                         <button class="show" :class='changeClass'>
@@ -49,7 +49,7 @@
             </footer>
         </div>
         <canvas-component></canvas-component>
-        <wrapper></wrapper>
+        <wrapper ref="wrapper"></wrapper>
     </div>
 </template>
 

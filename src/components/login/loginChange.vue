@@ -16,8 +16,8 @@
                 </div>
                 <captcha-component :captchaError="registerMsg.msg.imageCaptcha" @click.native="errorHide('imageCaptcha')" ref="register-imageCaptcha"></captcha-component>
                 <!--<div v-for="(data ,index) in registerMsg.msg" class="div_input" :class="{'label-error':registerMsg.msg.username}"   @click="errorHide(index)"  v-bind:key="data">
-                        <input type="text" placeholder="姓名" v-model="registerData.username" @focus="errorHide('username')" @keyup="getCaptcha('register')" />
-                  </div>-->
+                                    <input type="text" placeholder="姓名" v-model="registerData.username" @focus="errorHide('username')" @keyup="getCaptcha('register')" />
+                              </div>-->
             </div>
             <div class="group_click" @click="register">
                 <span>注册知乎</span>
@@ -80,7 +80,6 @@ import captcha from "../captcha"
 import nprogress from "nprogress";
 
 import { mapActions } from "vuex";
-import axios from "axios";
 import { bus } from "./bus";
 import { apiDomain } from "@/common/js/public.js";
 
@@ -96,6 +95,7 @@ export default {
         bus.$on("captchaData", b => {
             vm[(vm.$route.path.replace(/\//, "")) == "register" ? "registerData" : "loginData"].imageCaptcha = b;
         })
+
     },
     data() {
         return {
@@ -107,7 +107,9 @@ export default {
                 username: "",
                 password: "",
                 phone: "",
-                imageCaptcha: "123456",
+                sid: "",
+                imageCaptcha: "",
+                phoneCaptcha:"",
             },
             //注册结果信息
             registerMsg: {
@@ -143,6 +145,7 @@ export default {
         register() {
             let that = this
             let registerData = that.registerData;
+            registerData.sid = this.$refs['register-imageCaptcha'].$data.sessionId
             //短信验证码输入框
             this.$ajax({
                 method: 'post',
@@ -154,7 +157,19 @@ export default {
 
             }).then(function (res) {
                 var msg = that.registerMsg.msg;
-                // if(''){that.wrapperDisplay('wrapperRegister');return;}
+                if (res.data.code == 200) {
+                    that.wrapperDisplay('wrapperRegister');
+                    setTimeout(function () { that.$parent.$refs["wrapper"].$refs["phoneCaptcha"].phoneNub(that.registerData.phone) }, 0)
+                    that.$ajax({
+                        method: 'get',
+                        url: `${apiDomain}captcha/phoneCaptcha`,
+                        params: {
+                            phone: registerData.phone,
+                            sid: registerData.sid
+                        }
+                    }).then(data=>{console.log(data);registerData.phoneCaptcha})
+                    return;
+                }
                 ({
                     username: (msg.username),
                     phone: (msg.phone),
@@ -164,7 +179,7 @@ export default {
                 //   if(res.data.errors.imageCaptcha)
                 //     that.$refs.captcha.$emit("imageCaptcha",msg.imageCaptcha)
             }).catch(error => console.log(error))
-            
+
 
 
         },
@@ -200,7 +215,6 @@ export default {
     components: {
         captchaComponent: captcha
     },
-
 }
 </script>
 
