@@ -55,7 +55,10 @@ export default {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-            }).then(data => { console.log(data); })
+            }).then(data => { if(data.code==200){
+                localStorage.token=data.result;
+                location.href='/article';
+            } })
 
         },
         ...mapActions(["wrapperDisplay"]),

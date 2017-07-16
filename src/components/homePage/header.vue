@@ -23,14 +23,14 @@
             </div>
             <div class="nav-profile f-right">
                 <a href="javascript:" class="nav-userinfo" >
-                <span class="nav-user-name">pooder</span>
-                <img src="/static/Userheader.png" alt="" class="nav-user-headerimages">
+                <span class="nav-user-name">{{userInfo.username}}</span>
+                <img :src="userInfo.avatar" alt="" class="nav-user-headerimages">
                 </a>
                 <ul class="nav-profile-list">
                  <li><a href=""><i class="iconfont icon-ordinarylogin1"></i>我的主页</a></li>
                  <li><a href=""><i class="iconfont icon-ordinarylogin1"></i>私信</a></li>
                  <li><a href=""><i class="iconfont icon-ordinarylogin1"></i>设置</a></li>
-                 <li><a href=""><i class="iconfont icon-ordinarylogin1"></i>退出</a></li>
+                 <li><a @click="cancel" href=""><i class="iconfont icon-ordinarylogin1"></i>退出</a></li>
                 </ul>
             </div>
             <button class="nav-question" @click="wrapperDisplay('wrapperQuestion')">
@@ -45,12 +45,16 @@
 import { mapActions } from "vuex";
 
 export default {
+    props: ['userInfo'],
     data() {
         return {
             title: "component"
         }
     },
     methods: {
+        cancel(){
+            delete localStorage.token,location.href='/login'
+        },
         ...mapActions(["wrapperDisplay"]),
     }
 }

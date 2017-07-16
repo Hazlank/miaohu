@@ -1,12 +1,12 @@
 <template>
     <div id="homepage">
-        <home-header></home-header>
+        <home-header :userInfo='userInfo'></home-header>
         <div class="contain-center clearfloat">
             <div class="f-left">
                 <div class="contain-inner">
                     <div class="HomeEntry clearfloat">
                         <div class="HomeEntry-avatar f-left">
-                            <img src="/static/Userheader.png" alt="">
+                            <img :src="userInfo.avatar" alt="">
                         </div>
                         <div class="HomeEntry-box">
                             <div class="HomeEntry-arrow">
@@ -227,15 +227,30 @@ import header from "./header"
 import wrapper from "../wrapper"
 import axios from "axios"
 import { mapGetters } from "vuex"
+import { apiDomain } from "@/common/js/public.js";
 export default {
     created() {
+        var userInfo=this.userInfo
         this.$ajax({
-            url: 'http://112.74.111.33:8080/user/info/',
+            url: `${apiDomain}user/info/`,
             method: 'get',
-        }).then(d => console.log(d.data))
+            headers: { token: localStorage.token },
+        }).then(d => {if(d.data.code==200){
+        
+                ({
+                    username:userInfo.username,
+                    avatar:userInfo.avatar,
+                    location:userInfo.location,
+                    sex:userInfo.sex,
+                    bio:userInfo.bio,
+                }=d.data.result)
+        }else{
+            location.href='/login'
+        }})
     },
     data() {
         return {
+            userInfo: { "username": '', "avatar": "", "location": "", "sex": "", "bio": "" },
             data: [{
                 topic: {
                     id: '/',

@@ -52,7 +52,7 @@ export default {
         },
         article: {
           title: "",
-          content:'',
+          content: '',
           vote: "6",
           img: "",
           comment: "11",
@@ -71,8 +71,21 @@ export default {
     VueEditor
   },
   methods: {
-    questionContext(){
-      this.$parent.$parent.data.push(this.editor)
+    questionContext() {
+      this.$parent.$parent.data.push(JSON.parse(JSON.stringify(this.editor)))
+      // this.$ajax({
+      //   method: "post",
+      //   url: `${apiDomain}/user/login`,
+      //   data: {
+      //     title: this.editor.article.title,
+      //     content: this.editor.article.content,
+      //     tags: this.editor.topic.name
+      //   },
+      // }).then(res => {
+      //   console.log(res);
+      //   return;
+      //   res.data.code == 200 ? location.href = '/article' : flase
+      // })
       this.wrapperDisplay()
     },
     ...mapActions(["wrapperDisplay"]),

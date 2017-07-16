@@ -3,15 +3,15 @@
         <div v-show="choiceType ==='register'" class="miaohu-registerContent">
             <div class="group_input">
                 <div class="div_input" :class="{'label-error':registerMsg.msg.username}" @click="errorHide('username')" ref="register-username">
-                    <input type="text" placeholder="姓名" id="register-user" v-model="registerData.username" @focus="errorHide('username')" @keyup="getCaptcha('register')">
+                    <input type="text" placeholder="姓名" id="register-user" v-model="registerData.username" @focus="errorHide('username')" @keyup="getCaptcha('register')" @keyup.13="register()">
                     <label>{{registerMsg.msg.username}}</label>
                 </div>
                 <div class="div_input input_top" :class="{'label-error':registerMsg.msg.phone}" @click="errorHide('phone')" ref="register-phone">
-                    <input type="text" @focus="errorHide('phone')" placeholder="手机号或邮箱" v-model="registerData.phone" @keyup="getCaptcha('register')">
+                    <input type="text" @focus="errorHide('phone')" placeholder="手机号或邮箱" v-model="registerData.phone" @keyup="getCaptcha('register')" @keyup.13="register()">
                     <label>{{registerMsg.msg.phone}}</label>
                 </div>
                 <div class="div_input input_top" :class="{'label-error':registerMsg.msg.password}" @click="errorHide('password')" ref="register-password">
-                    <input type="password" placeholder="密码（不少于 6 位）" v-model="registerData.password" @focus="errorHide('password')" @keyup="getCaptcha('register')">
+                    <input type="password" placeholder="密码（不少于 6 位）" v-model="registerData.password" @focus="errorHide('password')" @keyup="getCaptcha('register')" @keyup.13="register()">
                     <label>{{registerMsg.msg.password}}</label>
                 </div>
                 <captcha-component :captchaError="registerMsg.msg.imageCaptcha" @click.native="errorHide('imageCaptcha')" ref="register-imageCaptcha"></captcha-component>
@@ -29,12 +29,13 @@
         <div v-show="choiceType ==='login'" class="miaohu-loginContent">
             <div class="group_input" v-if="loginType==='Pc'">
                 <div class="div_input">
-                    <input type="text" @keyup="getCaptcha('login')" placeholder="手机号或邮箱" v-model="loginData.phone">
+                    <input type="text" placeholder="手机号" v-model="loginData.phone" @keyup.13="login()" @focus="errorHide('message')">
                 </div>
-                <div class="div_input input_top">
-                    <input type="password" @keyup="getCaptcha('login')" placeholder="密码" v-model="loginData.password">
+                <div class="div_input input_top" :class="{'label-error':loginMsg.msg.message}" @click="errorHide('message')" ref="login-message">
+                    <input type="password"  placeholder="密码" v-model="loginData.password"  @keyup.13="login()" @focus="errorHide('message')">
+                    <label>{{loginMsg.msg.message}}</label>
                 </div>
-                <captcha-component :captchaError="loginMsg.error" @click.native="errorHide('imageCaptcha')" ref="login-imageCaptcha"></captcha-component>
+                <!--<captcha-component :captchaError="loginMsg.error" @click.native="errorHide('imageCaptcha')" ref="login-imageCaptcha"></captcha-component>-->
             </div>
             <div class="group_input" v-else>
                 <div class="div_input">
@@ -125,10 +126,12 @@ export default {
             loginData: {
                 phone: "",
                 password: "",
-                imageCaptcha: "",
+                // imageCaptcha: "",
             },
             loginMsg: {
-                error: ""
+                msg:{
+                    message:''
+                }
             }
         }
     },
@@ -147,7 +150,7 @@ export default {
             let registerData = that.registerData;
             registerData.sid = this.$refs['register-imageCaptcha'].$data.sessionId
             //短信验证码输入框
-            this.$ajax({
+            this.$ajax({    
                 method: 'post',
                 url: `${apiDomain}register/valid`,
                 data: qs.stringify(registerData),
@@ -189,17 +192,18 @@ export default {
             let ele = this.$refs[`${that.$route.path.substr(1)}-${type}`]
             ele instanceof HTMLElement ? ele.classList.remove('label-error') : ele.$refs[type].classList.remove('label-error')
             setTimeout(function () {
-                that.registerMsg.msg[type] = '';
+                that[`${that.$route.name}Msg`].msg[type] = '';
             }, 250);
         },
         login() {
             let loginData = this.loginData;
+            let that=this;
             this.$ajax({
                 method: "post",
                 url: `${apiDomain}/user/login`,
                 params: loginData,
             }).then(res => {
-                res.data.code == 200 ? location.href = '/article' : flase
+                res.data.code == 200 ? (localStorage.token=res.data.result,location.href = '/article') : that.loginMsg.msg.message='用户不存在或密码错误';
             })
         },
         getCaptcha(type) {
