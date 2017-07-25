@@ -1,12 +1,12 @@
 <template>
     <div id="homepage">
-        <home-header :userInfo='userInfo'></home-header>
+        <home-header ref='homeHeader'></home-header>
         <div class="contain-center clearfloat">
             <div class="f-left">
                 <div class="contain-inner">
                     <div class="HomeEntry clearfloat">
                         <div class="HomeEntry-avatar f-left">
-                            <img :src="userInfo.avatar" alt="">
+                            <img :src="userInfo.avatar">
                         </div>
                         <div class="HomeEntry-box">
                             <div class="HomeEntry-arrow">
@@ -223,98 +223,76 @@
     </div>
 </template>
 <script>
-import header from "./header"
+import header from "../header"
 import wrapper from "../wrapper"
 import axios from "axios"
 import { mapGetters } from "vuex"
-import { apiDomain } from "@/common/js/public.js";
 export default {
     created() {
-        var userInfo=this.userInfo
-        this.$ajax({
-            url: `${apiDomain}user/info/`,
-            method: 'get',
-            headers: { token: localStorage.token },
-        }).then(d => {if(d.data.code==200){
-        
-                ({
-                    username:userInfo.username,
-                    avatar:userInfo.avatar,
-                    location:userInfo.location,
-                    sex:userInfo.sex,
-                    bio:userInfo.bio,
-                }=d.data.result)
-        }else{
-            location.href='/login'
-        }})
+
+        // this.$ajaxGet('user/info', '', (d) => {
+         
+        //     if (d.data.code == 200) {
+        //         ({
+        //             username: userInfo.username,
+        //             avatar: userInfo.avatar,
+        //             location: userInfo.location,
+        //             sex: userInfo.sex,
+        //             bio: userInfo.bio,
+        //         } = d.data.result)
+        //         this.$ajaxGet('user/question', '', (d) => {
+        //             if (d.data.code == 200) {
+        //                 console.log(d)
+
+        //             }
+        //         }
+        //         )
+        //     }
+        // }
+        // )
+    
     },
     data() {
         return {
-            userInfo: { "username": '', "avatar": "", "location": "", "sex": "", "bio": "" },
+            userInfo:'',
             data: [{
                 topic: {
+                     /**
+                    @param { string } id     主题id
+                    @param { string } avatar 主题头像
+                    @param { string } name   主题名字
+                        */
                     id: '/',
                     avatar: "/static/topic.jpg",
+                    bio:'',
                     name: "JavaScript",
                 },
                 article: {
+                    /**
+                    @param { string } title     文章标题
+                    @param { string } content   文章内容
+                    @param { string } vote      文章点赞
+                    @param { number } comment   评论数量
+                    @param { string } type      文章类型
+                        */
                     title: "总是被勒索骗局滥用,Google决心要“废除”JavaScript这项小特性",
                     content: "据ZDNet报道，为解决浏览器中JavaScript对话框被滥用的状况，Google Chromium团队近日发布根治提案，同时建议开发者今后尽量不要使用该特性。JavaScript对话框滥用，是指网站使用JavaScript循环和对话框特性，把用户锁定在当前网页，无法离开或关闭。通常钓…",
                     vote: "6",
-                    img: "",
                     comment: "11",
-                    type: "作者保留权利"
                 },
                 author: {
+                    /**
+                    @param { string } name   用户名字
+                    @param { string } bio    用户签名
+                    @param { string } avatar 用户头像
+                    @param { string } href   用户主页
+                        */
                     name: "嘶吼吼",
                     bio: "网络安全观察者",
-                    avatar: "",
-                    href: "#",
-                },
-                type: "作者保留权利"
-            }, {
-                topic: {
-                    id: '/',
-                    avatar: "/static/topic.jpg",
-                    name: "JavaScript",
-                },
-                article: {
-                    title: "总是被勒索骗局滥用,Google决心要“废除”JavaScript这项小特性",
-                    content: "据ZDNet报道，为解决浏览器中JavaScript对话框被滥用的状况，Google Chromium团队近日发布根治提案，同时建议开发者今后尽量不要使用该特性。JavaScript对话框滥用，是指网站使用JavaScript循环和对话框特性，把用户锁定在当前网页，无法离开或关闭。通常钓…",
-                    vote: "6",
-                    img: "",
-                    comment: "11",
-                    type: "作者保留权利"
-                },
-                author: {
-                    name: "嘶吼吼",
-                    bio: "网络安全观察者",
-                    avatar: "",
-                    href: "#",
-                },
-                type: "作者保留权利"
-            }, {
-                topic: {
-                    id: '/',
-                    avatar: "/static/topic.jpg",
-                    name: "JavaScript",
-                },
-                article: {
-                    title: "总是被勒索骗局滥用,Google决心要“废除”JavaScript这项小特性",
-                    content: "据ZDNet报道，为解决浏览器中JavaScript对话框被滥用的状况，Google Chromium团队近日发布根治提案，同时建议开发者今后尽量不要使用该特性。JavaScript对话框滥用，是指网站使用JavaScript循环和对话框特性，把用户锁定在当前网页，无法离开或关闭。通常钓…",
-                    vote: "6",
-                    img: "",
-                    comment: "11",
-                    type: "作者保留权利"
-                },
-                author: {
-                    name: "嘶吼吼",
-                    bio: "网络安全观察者",
-                    avatar: "",
-                    href: "#",
-                },
-                type: "作者保留权利"
-            },],
+                    avatar: "",                             
+                    href: "#",                              
+                },  
+            }],
             sidebar: {
                 live: [{
                     img: '/static/sidebar.jpg',
@@ -367,6 +345,9 @@ export default {
             }
         }
     },
+    mounted(){  
+       this.userInfo=this.$refs['homeHeader'].getInfo();
+    },
     components: {
         homeHeader: header,
         wrapper
@@ -374,6 +355,6 @@ export default {
 }
 </script>
 
-<style lang='sass'>
-    @import "article.sass"
+<style lang='sass' scoped >
+    @import "../article/article.sass"
 </style>

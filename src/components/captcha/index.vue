@@ -11,7 +11,6 @@
 
 <script>
 import { bus } from "../login/bus";
-import { apiDomain } from "@/common/js/public.js";
 
 export default {
   created() {
@@ -48,3 +47,49 @@ export default {
   }
 }
 </script>
+
+
+<style lang="sass" scoped>
+input
+    border: 0
+    border-radius: 0
+    box-shadow: none
+    background: #fff
+    padding: 1em .8em
+    width: 100%
+    box-sizing: border-box
+    line-height: 19px
+    color: #555
+    outline: none
+    font-size: 14px
+    &::-webkit-input-placeholder
+        color: #ccc;
+        -webkit-text-fill-color: #ccc;
+
+.div_input .captcha img
+    position: absolute;
+    top: 50%;
+    right: .5em;
+    margin-top: -19px;
+    width: 100px;
+    height: 38px;   
+
+.input_captcha
+    transition: height .7s cubic-bezier(0.42,0,0.58,1)       
+    height: 0px
+    overflow: hidden
+    visibility: hidden
+    border-top: none!important
+
+.input_captchaT
+    visibility: visible
+    height: 46px
+    border-top: 1px solid #e8e8e8!important
+
+.input_captcha label 
+    right: 85px 
+    
+.input_captcha.label-error label
+    right: 93px 
+
+</style>

@@ -15,19 +15,19 @@
             </div>
             <div class="nav-nav f-left clearfloat">
                 <ul>
-                    <li class="active"><a href="">首页</a></li>
+                    <li class="active"><router-link to="/article">首页</router-link></li>
                     <li><a href="">话题</a></li>
                     <li><a href="">发现</a></li>
                     <li><a href="">消息</a></li>
                 </ul>
             </div>
             <div class="nav-profile f-right">
-                <a href="javascript:" class="nav-userinfo" >
+                <a href="javascript:" class="nav-userinfo" >    
                 <span class="nav-user-name">{{userInfo.username}}</span>
                 <img :src="userInfo.avatar" alt="" class="nav-user-headerimages">
                 </a>
                 <ul class="nav-profile-list">
-                 <li><a href=""><i class="iconfont icon-ordinarylogin1"></i>我的主页</a></li>
+                 <li><router-link :to="`/user/${userInfo.username}/activities`"><i class="iconfont icon-ordinarylogin1"></i>我的主页</router-link></li>
                  <li><a href=""><i class="iconfont icon-ordinarylogin1"></i>私信</a></li>
                  <li><a href=""><i class="iconfont icon-ordinarylogin1"></i>设置</a></li>
                  <li><a @click="cancel" href=""><i class="iconfont icon-ordinarylogin1"></i>退出</a></li>
@@ -45,9 +45,38 @@
 import { mapActions } from "vuex";
 
 export default {
-    props: ['userInfo'],
+    created(){
+        var userInfo = this.userInfo;
+        var data=this.data;
+        this.$ajax({
+            url: `${apiDomain}user/info/`,
+            method: 'get',
+            headers: { token: localStorage.token },
+        }).then(d => {
+            if (d.data.code == 200) {
+                ({
+                    username: userInfo.username,
+                    avatar: userInfo.avatar,
+                    location: userInfo.location,
+                    sex: userInfo.sex,
+                    bio: userInfo.bio,
+                } = d.data.result)
+                this.$ajax({
+                    url: `${apiDomain}user/question/`,
+                    method: 'get',
+                    headers: { token: localStorage.token },
+                }).then(d => {
+                    if (d.data.code == 200) {
+                        data=d.data.result
+                    } 
+                })
+            }
+        })
+    },
+    props:['userHeader'],
     data() {
         return {
+            userInfo: { "username": '', "avatar": "", "location": "", "sex": "", "bio": "" },
             title: "component"
         }
     },
@@ -55,9 +84,12 @@ export default {
         cancel(){
             delete localStorage.token,location.href='/login'
         },
+        getInfo(info){
+             return this.userInfo;               
+        },
         ...mapActions(["wrapperDisplay"]),
     }
-}
+}   
 </script>
 
 <style>
@@ -65,7 +97,6 @@ export default {
 </style>
 
 <style lang="sass">
-@import "../../common/css/common.sass"
 //公共sass，css reset
 @import "header.sass"
 </style>

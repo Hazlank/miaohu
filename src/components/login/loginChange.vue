@@ -82,7 +82,7 @@ import nprogress from "nprogress";
 
 import { mapActions } from "vuex";
 import { bus } from "./bus";
-import { apiDomain } from "@/common/js/public.js";
+
 
 
 
@@ -222,3 +222,212 @@ export default {
 }
 </script>
 
+<style lang='sass' scoped>
+
+//公共sass，css reset
+.problem a
+    color: #B3B3B4
+    margin-right: 25px
+
+.problem .social-sina a,.problem .social-qq a
+    font-size: 19px
+
+
+.problem .social-div a
+    cursor: pointer
+    &:hover
+        color: #959595
+
+#miaohu_contain .problem .social-trans
+    opacity: 1
+    -ms-filter: "alpha(Opacity=100)"
+    visibility: visible
+    -webkit-transform: translate(7px,0)
+    -ms-transform: translate(7px,0)
+    transform: translate(7px,0)
+    
+.problem .social-div
+    position: absolute
+    display: inline
+    opacity: 0
+    -ms-filter: "alpha(Opacity=0)"
+    -webkit-transform: translate(-13px,0)
+    -ms-transform: translate(-13px,0)
+    transform: translate(-13px,0)
+    transition: .25s ease-out
+    visibility: hidden
+
+.group_input .div_input input
+    border: 0
+    border-radius: 0
+    box-shadow: none
+    background: #fff
+    padding: 1em .8em
+    width: 100%
+    box-sizing: border-box
+    line-height: 19px
+    color: #555
+    outline: none
+    font-size: 14px
+    &::-webkit-input-placeholder
+        color: #ccc;
+        -webkit-text-fill-color: #ccc;
+
+
+.group_input label
+    position: absolute;
+    top: 0;
+    right: 8px;
+    padding: 0 8px;
+    line-height: 48px;
+    color: #c33;
+    cursor: text;
+    background: #fff;
+    background: -webkit-linear-gradient(left,rgba(255,255,255,0),#fff 8px);
+    background: linear-gradient(to right,rgba(255,255,255,0),#fff 8px);
+    visibility: hidden;
+    opacity: 0;
+    -ms-filter: "alpha(Opacity=0)";
+    -webkit-transform: translate(20px,0);
+    -ms-transform: translate(20px,0);
+    transform: translate(20px,0);
+    -webkit-transition: .25s ease-out;
+    transition: .25s ease-out;
+    font-size: 14px;
+
+.problem .social-div a
+    cursor: pointer
+    &:hover
+        color: #959595
+
+.identity-phone,.problem
+    font-size: 14px
+    margin-top: 18px 
+    text-align: initial
+
+.problem .social-account
+    cursor: pointer
+    margin-right: 20px
+    color: #787878
+    
+
+.identity-phone .signin-phone
+    color: #5ca5e8
+    background: transparent
+    border: 0
+    cursor: pointer
+    outline: none
+    float: left
+    padding: 0 
+    font-size: 14px
+
+.identity-phone a
+    float: right
+    color: #555
+
+
+
+.clear_b
+    clear: both
+
+.problem a
+    color: #B3B3B4
+    margin-right: 25px
+
+.problem .social-sina a,.problem .social-qq a
+    font-size: 19px
+
+
+.problem .social-div a
+    cursor: pointer
+    &:hover
+        color: #959595
+
+.label-leave-active
+    visibility: hidden;
+    opacity: 0;
+    -ms-filter: "alpha(Opacity=0)";
+    -webkit-transform: translate(20px,0);
+    -ms-transform: translate(20px,0);
+    transform: translate(20px,0);
+    -webkit-transition: .25s ease-out;
+    transition: .25s ease-out;
+
+
+
+.send-code-button
+    display: inline-block;
+    width: 96px;
+    padding: 14px 8px;
+    line-height: 19px;
+    color: #5ca5eb;
+    background: #fff;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    &:before
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 200px;
+        width: 1px;
+        height: 40px;
+        background: #e9e9e9;
+        -webkit-transform: translateY(-20px);
+        -ms-transform: translateY(-20px);
+        transform: translateY(-20px);
+
+.group_input
+    padding: 1px 0
+    border: 1px solid #d5d5d5
+    border-radius: 3px
+    position: relative
+    
+
+#miaohu_contain .label-error label
+    visibility: visible;
+    opacity: 1;
+    -ms-filter: "alpha(Opacity=100)";
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);
+    
+
+.group_input .input_top
+    border-top: 1px solid #e8e8e8
+    position: relative
+    font-size: 0
+
+.input_top .sm[type='text']
+    width: 200px
+    
+
+.group_click span
+    margin-top: 18px
+    display: inline-block
+    background: #0f88eb
+    box-shadow: none
+    border: 0
+    border-radius: 3px
+    line-height: 41px
+    color: #fff
+    width: 100%
+    font-size: 15px
+    cursor: pointer
+    text-shadow: 0 1px 1px rgba(0,0,0,.2)
+    &:hover
+        background: #55abed
+
+
+
+.miaohu_chang .agreement-tip
+    margin-top: 21px
+    font-size: 13px
+    text-align: center
+    color: #999
+
+.miaohu_chang .agreement-tip a
+    color: #698ebf
+
+
+</style>

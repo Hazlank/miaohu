@@ -30,8 +30,10 @@
 import {
     mapActions
 } from "vuex"
-import { apiDomain } from "@/common/js/public.js";
-import qs from 'querystring';
+
+
+
+
 export default {
     data() {
         return {
@@ -67,7 +69,8 @@ export default {
 </script>
 
 
-<style lang="sass">
+<style lang="sass" >
+
 .miaohu-wrapper
     display: -webkit-flex;
     display: -ms-flexbox;

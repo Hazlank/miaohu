@@ -50,6 +50,7 @@
         </div>
         <canvas-component></canvas-component>
         <wrapper ref="wrapper"></wrapper>
+        <div class="login-wrapper"></div>
     </div>
 </template>
 
@@ -96,9 +97,170 @@
 </script>
 
 
-<style lang='sass'>
+<style lang="sass" scoped>
 
-//公共sass，css reset
-@import "login.sass"
+
+.index-component
+    height: 100%
+    text-align: center
+    /* overflow-x: hidden; */
+    color: #555
+    .login-wrapper
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #f7fafc
+        padding-bottom: 60px
+        z-index: -2;
+
+.miaohu_height
+    height: 100%
+
+#miaohu_contain
+    white-space: nowrap
+    height: 100%
+    margin-bottom: -42px
+    &:before
+        content: ''
+        display: inline-block
+        height: 100%
+        vertical-align: middle
+        margin-right: -.25em
+
+  
+
+#miaohu_contain .miaohu_log
+    margin: 0 auto
+    width: 160px
+    height: 74px
+    background: url(/static/Websitelogo.png) no-repeat
+    background-size: 
+    
+.miaohu_middle
+    display: inline-block
+    vertical-align: middle
+    min-height: 590px
+
+#c_piture
+    position: absolute
+    top: 0
+    z-index: -1
+    width: 100%
+    height: 100%
+
+#miaohu_contain .miaohu_chang
+    width: 298px
+    margin: 0 auto
+   
+
+
+.miaohu_head .head_title
+    margin: 30px 0 20px
+    font-weight: 400
+    font-size: 18px
+    line-height: 1
+
+.navs-slider a
+    width: 4em
+    line-height: 35px
+    font-size: 18px
+    text-align: center
+    display: inline-block
+    opacity: .5
+    transition: opacity .15s
+    &:hover
+        opacity: .7
+
+.navs-slider
+    width: 200px
+    margin: 0 auto
+    position: relative
+    margin-bottom: 15px
+
+.navs-slider-bar
+    position: absolute
+    bottom: 0
+    margin: 0 .8em
+    width: 2.7em
+    height: 2px
+    background: #0f88eb
+    -webkit-transition: left .15s ease-in
+    transition: left .15s ease-in
+    left: 28px
+    transition: translate3d(0,0,0,0)
+    -webkit-transition: translate3d(0,0,0,0);
+
+.head_choice .navs-login .navs-slider-bar
+    left: 104px
+
+.head_choice .navs-register .navs-slider-bar
+    left: 28px
+
+
+.QRcode
+    width: 300px
+    margin: 0 auto
+
+.QRcode .show
+    width: 100%
+    height: 41px
+    line-height: 39px
+    color: #5fa6e5
+    border: 1px solid #96c2e9
+    border-radius: 3px
+    cursor: pointer
+    outline: none
+    background: initial
+
+.QRcode .navs-login
+    margin-top: 24px
+
+.QRcode .navs-register
+    margin-top: 48px
+    
+.identity-phone,.problem
+    font-size: 14px
+    margin-top: 18px 
+    text-align: initial
+
+.problem .social-account
+    cursor: pointer
+    margin-right: 20px
+    color: #787878
+    
+
+.identity-phone .signin-phone
+    color: #5ca5e8
+    background: transparent
+    border: 0
+    cursor: pointer
+    outline: none
+    float: left
+    padding: 0 
+    font-size: 14px
+
+.identity-phone a
+    float: right
+    color: #555
+
+.footer
+    font-size: 12px
+    line-height: 21px
+    text-align: center
+
+
+.footer a,.footer span
+    color: #aebdc9!important
+
+.footer .dot 
+    margin: 0 3px
+
+.head_choice .router-link-active
+    color: #0f88eb
+    opacity: 1!important
+
+
 
 </style>
