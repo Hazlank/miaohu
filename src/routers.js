@@ -1,6 +1,7 @@
+
+
 const routers = [{
   path: '/',
-  name: 'index',
   component(resolve) {
     require.ensure(['./App.vue'], () => {
       resolve(require('./App.vue'));
@@ -8,15 +9,26 @@ const routers = [{
   },
   children: [
     {
+      path: '/',
+      redirect: to => {
+        if (!localStorage.token) {
+          return '/login'
+        } else {
+          return '/article'
+        }
+      },
+    },
+    {
       path: '/article',
       name: 'article',
       component(resolve) {
         require.ensure([], () => {
-          resolve(require('./components/homePage/article.vue'));
+          resolve(require('./components/article/article.vue'));
         });
       }
     }, {
       path: '/login',
+      alias: '/register',
       name: 'login',
       component(resolve) {
         require.ensure([], () => {
@@ -24,14 +36,36 @@ const routers = [{
         });
       }
     }, {
-      path: '/register',
-      name: 'register',
+      path: '/user/:username/:operate',
+      // redirect: to => {
+
+      //   let path = to.path;
+      //   return "activities,answers,asks,columns,collections,activities".split(',').indexOf(path.substring(path.lastIndexOf('/') + 1)) == -1 ? '/404' : path
+      // },
+      name: 'homepage',
       component(resolve) {
         require.ensure([], () => {
-          resolve(require('./components/login/loginComponent.vue'));
+          resolve(require('./components/homepage'));
         });
       }
-    }],
+    },
+    {
+      path: '/404',
+      name: '404',
+      component(resolve) {
+        require.ensure([], () => {
+          console.log('a')
+          resolve(require('./components/404'));
+        });
+      }
+    }, {
+      path: '*',
+      name: 'all',
+      redirect: to => {
+        return '/404'
+      }
+    },
+  ],
 }]
 
 
