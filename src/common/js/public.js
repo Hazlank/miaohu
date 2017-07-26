@@ -1,1 +1,1 @@
-export const  apiDomain='https://miaohu.nbsaw.com/'
+export const apiDomain='https://miaohu.nbsaw.com/'

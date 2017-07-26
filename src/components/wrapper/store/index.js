@@ -9,7 +9,7 @@ let state = {
     wrapper: false,
     wrapperRegister: false,
     wrapperQuestion: false,
-    
+
 };
 
 
@@ -20,8 +20,11 @@ const store = new Vuex.Store({
     mutations: {
         wrapperDisplay(state, type) {
             let html = document.getElementsByTagName('html')[0]
-            state.wrapper ? (state.wrapper = false, html.style.overflow = 'initial') : (state.wrapper = true, html.style.overflow = 'hidden');
             state[type] = true;
+            if(state.wrapper)
+              state.wrapper = false, html.style.overflow = 'initial'
+            else
+              state.wrapper = true, html.style.overflow = 'hidden'
         },
     }
 });
