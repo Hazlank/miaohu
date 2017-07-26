@@ -96,7 +96,6 @@ export default {
         bus.$on("captchaData", b => {
             vm[(vm.$route.path.replace(/\//, "")) == "register" ? "registerData" : "loginData"].imageCaptcha = b;
         })
-
     },
     data() {
         return {
@@ -144,7 +143,6 @@ export default {
         Changelogin(t) {
             this.loginType = t
         },
-
         register() {
             let that = this
             let registerData = that.registerData;
