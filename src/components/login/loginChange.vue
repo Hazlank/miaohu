@@ -140,7 +140,7 @@ export default {
         Community() {
             this.social = this.social ? false : true
         },
-        //账号登录or手机验证码登录  
+        //账号登录or手机验证码登录
         Changelogin(t) {
             this.loginType = t
         },
@@ -150,7 +150,7 @@ export default {
             let registerData = that.registerData;
             registerData.sid = this.$refs['register-imageCaptcha'].$data.sessionId
             //短信验证码输入框
-            this.$ajax({    
+            this.$ajax({
                 method: 'post',
                 url: `${apiDomain}register/valid`,
                 data: qs.stringify(registerData),
@@ -182,12 +182,8 @@ export default {
                 //   if(res.data.errors.imageCaptcha)
                 //     that.$refs.captcha.$emit("imageCaptcha",msg.imageCaptcha)
             }).catch(error => console.log(error))
-
-
-
         },
         errorHide(type) {
-
             let that = this;
             let ele = this.$refs[`${that.$route.path.substr(1)}-${type}`]
             ele instanceof HTMLElement ? ele.classList.remove('label-error') : ele.$refs[type].classList.remove('label-error')
@@ -245,7 +241,7 @@ export default {
     -webkit-transform: translate(7px,0)
     -ms-transform: translate(7px,0)
     transform: translate(7px,0)
-    
+
 .problem .social-div
     position: absolute
     display: inline
@@ -302,14 +298,14 @@ export default {
 
 .identity-phone,.problem
     font-size: 14px
-    margin-top: 18px 
+    margin-top: 18px
     text-align: initial
 
 .problem .social-account
     cursor: pointer
     margin-right: 20px
     color: #787878
-    
+
 
 .identity-phone .signin-phone
     color: #5ca5e8
@@ -318,7 +314,7 @@ export default {
     cursor: pointer
     outline: none
     float: left
-    padding: 0 
+    padding: 0
     font-size: 14px
 
 .identity-phone a
@@ -382,7 +378,7 @@ export default {
     border: 1px solid #d5d5d5
     border-radius: 3px
     position: relative
-    
+
 
 #miaohu_contain .label-error label
     visibility: visible;
@@ -391,7 +387,7 @@ export default {
     -webkit-transform: translate(0,0);
     -ms-transform: translate(0,0);
     transform: translate(0,0);
-    
+
 
 .group_input .input_top
     border-top: 1px solid #e8e8e8
@@ -400,7 +396,7 @@ export default {
 
 .input_top .sm[type='text']
     width: 200px
-    
+
 
 .group_click span
     margin-top: 18px
