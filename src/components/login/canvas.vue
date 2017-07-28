@@ -11,7 +11,6 @@ import { backdrop } from "@/common/js/backdrop.js"
 
 export default{
     mounted(){
- 
         backdrop();
     }
 }

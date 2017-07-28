@@ -52,25 +52,11 @@
         <div class="main-column table">
           <div class="main-cloumHeader">
             <ul>
-               <!--pins,following-->
-              <li class="li-item">
-                <router-link to="/activities">动态</router-link>
+              <!--pins,following-->
+              <li class="li-item" @click="router" v-for="keys in Object.keys(cloumList)">
+                <router-link :to="`/user/${userInfo.username}/${keys}`">{{cloumList[keys].title}}</router-link>
               </li>
-              <li class="li-item">
-                <router-link to="/answers">回答</router-link>
-              </li>
-              <li class="li-item">
-                <router-link to="/asks">提问</router-link>
-              </li>
-              <li class="li-item">
-                <router-link to="/columns">专栏</router-link>
-              </li>
-              <li class="li-item">
-                <router-link to="/collections">收藏</router-link>
-              </li>
-              <li class="li-item">
-                <router-link to="/activities">更多</router-link>
-              </li>
+  
             </ul>
           </div>
           <div is='cloumList' v-for="keys in Object.keys(cloumList)" :keys='keys' :cloumList='cloumList'></div>
@@ -146,8 +132,8 @@
 <script>
 import header from "../header"
 export default {
-  created(){
-    console.log(this)
+  created() {
+    this.router()
   },
   data() {
     return {
@@ -156,7 +142,7 @@ export default {
       cloumList: {
         activities: {
           title: '动态',
-          state: true,
+          state: false,
         },
         answers: {
           title: '回答',
@@ -171,19 +157,24 @@ export default {
           state: false,
         },
         collections: {
-          title: '收藏夹',
+          title: '收藏',
           state: false,
         },
-        pins: {
-          title: '分享',
+        more: {
+          title: '更多',
           state: false,
-        },
-        following: {
-          title: '关注',
-          state: false,
-        },
+          children: {
+            pins: {
+              title: '分享',
+              state: false,
+            },
+            following: {
+              title: '关注',
+              state: false,
+            },
+          }
+        }
       }
-
       // {
       //   title:'动态',
       //   state: true,
@@ -208,6 +199,18 @@ export default {
   methods: {
     dropDown() {
       !this.triangle ? this.triangle = true : this.triangle = false;
+    },
+    router() {
+      var operate = this.$route.params.operate;
+      var cloumList=this.cloumList;
+      if (cloumList[operate]) {
+          for(let key in cloumList){
+           cloumList[key].state=false;
+          }
+          cloumList[operate].state=true;
+      } else {
+        cloumList['activities'].state = 'true'
+      }
     },
   },
   mounted() {

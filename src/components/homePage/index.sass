@@ -183,7 +183,7 @@ body
           background: white;
           width: 694px;
           .main-cloumHeader
-              border-bottom: 1px solid #f0f2f7;
+              border-bottom: 1px solid #f0f2f7;    
       .side-column
           width: 296px;
           color: #555;
@@ -349,3 +349,12 @@ body
     display: inline-block
 
 
+.main-cloumHeader .router-link-active
+    &:after
+        position: absolute;
+        right: 0;
+        bottom: -1px;
+        left: 0;
+        height: 3px;
+        background: #0f88eb;
+        content: "";

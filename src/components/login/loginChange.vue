@@ -16,8 +16,8 @@
                 </div>
                 <captcha-component :captchaError="registerMsg.msg.imageCaptcha" @click.native="errorHide('imageCaptcha')" ref="register-imageCaptcha"></captcha-component>
                 <!--<div v-for="(data ,index) in registerMsg.msg" class="div_input" :class="{'label-error':registerMsg.msg.username}"   @click="errorHide(index)"  v-bind:key="data">
-                                    <input type="text" placeholder="姓名" v-model="registerData.username" @focus="errorHide('username')" @keyup="getCaptcha('register')" />
-                              </div>-->
+                                            <input type="text" placeholder="姓名" v-model="registerData.username" @focus="errorHide('username')" @keyup="getCaptcha('register')" />
+                                      </div>-->
             </div>
             <div class="group_click" @click="register">
                 <span>注册知乎</span>
@@ -32,7 +32,7 @@
                     <input type="text" placeholder="手机号" v-model="loginData.phone" @keyup.13="login()" @focus="errorHide('message')">
                 </div>
                 <div class="div_input input_top" :class="{'label-error':loginMsg.msg.message}" @click="errorHide('message')" ref="login-message">
-                    <input type="password"  placeholder="密码" v-model="loginData.password"  @keyup.13="login()" @focus="errorHide('message')">
+                    <input type="password" placeholder="密码" v-model="loginData.password" @keyup.13="login()" @focus="errorHide('message')">
                     <label>{{loginMsg.msg.message}}</label>
                 </div>
                 <!--<captcha-component :captchaError="loginMsg.error" @click.native="errorHide('imageCaptcha')" ref="login-imageCaptcha"></captcha-component>-->
@@ -87,6 +87,12 @@ import { bus } from "./bus";
 
 
 export default {
+    // beforeCreate() {
+    //     if (localStorage.token) {
+    //         console.log('fe')
+    //         location.href = '\article'
+    //     }
+    // },
     created() {
         this.choiceType = (this.$route.path.replace(/\//, "")) == "login" ? "login" : "register";
         var vm = this;
@@ -96,7 +102,6 @@ export default {
         bus.$on("captchaData", b => {
             vm[(vm.$route.path.replace(/\//, "")) == "register" ? "registerData" : "loginData"].imageCaptcha = b;
         })
-
     },
     data() {
         return {
@@ -110,7 +115,7 @@ export default {
                 phone: "",
                 sid: "",
                 imageCaptcha: "",
-                phoneCaptcha:"",
+                phoneCaptcha: "",
             },
             //注册结果信息
             registerMsg: {
@@ -129,8 +134,8 @@ export default {
                 // imageCaptcha: "",
             },
             loginMsg: {
-                msg:{
-                    message:''
+                msg: {
+                    message: ''
                 }
             }
         }
@@ -150,7 +155,7 @@ export default {
             let registerData = that.registerData;
             registerData.sid = this.$refs['register-imageCaptcha'].$data.sessionId
             //短信验证码输入框
-            this.$ajax({    
+            this.$ajax({
                 method: 'post',
                 url: `${apiDomain}register/valid`,
                 data: qs.stringify(registerData),
@@ -170,7 +175,7 @@ export default {
                             phone: registerData.phone,
                             sid: registerData.sid
                         }
-                    }).then(data=>{console.log(data);registerData.phoneCaptcha})
+                    }).then(data => { console.log(data); registerData.phoneCaptcha })
                     return;
                 }
                 ({
@@ -197,13 +202,13 @@ export default {
         },
         login() {
             let loginData = this.loginData;
-            let that=this;
+            let that = this;
             this.$ajax({
                 method: "post",
                 url: `${apiDomain}/user/login`,
                 params: loginData,
             }).then(res => {
-                res.data.code == 200 ? (localStorage.token=res.data.result,location.href = '/article') : that.loginMsg.msg.message='用户不存在或密码错误';
+                res.data.code == 200 ? (localStorage.token = res.data.result, location.href = '/article') : that.loginMsg.msg.message = '用户不存在或密码错误';
             })
         },
         getCaptcha(type) {

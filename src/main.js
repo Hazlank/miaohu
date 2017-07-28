@@ -15,51 +15,12 @@ import "@/common/css/common.sass"
 
 //公共参数
 import { apiDomain } from "@/common/js/public.js";
-global.apiDomain=apiDomain;
-// Vue 组件
-/**
- * 知乎登录页面组件
- */
+global.apiDomain = apiDomain;
 
-/**
- *  知乎登录后提问首页
- */
-// import header from "@/components/homePage/header";
-// import article from "@/components/homePage/article";
-
-
-
-// Vue.component('captcha-component', {
-//     created(){
-//         this.$on('captcha',function(){
-//             this.captchaed()
-//         })
-//     },
-//     template: `<div  :class="{'input_captchaT':captcha}"
-//                      class="div_input input_top  input_captcha">
-//                 <input type="captcha"
-//                        placeholder="验证码">
-//                 <span class="captcha">
-//                                 <img src="common/images/captcha.gif" alt="">
-//                            </span>
-//                 <label></label>
-//             </div>`,
-//     data() {
-//         return {
-//             captcha: false
-//         }
-//     },
-//     methods: {
-//         captchaed(){
-//             this.captcha=true;
-
-//         }
-//     }
-// })
 
 Vue.use(vueRouter);
 Vue.use(Vuex);
-console.log(Vuex)
+
 
 
 Vue.prototype.$ajax = axios;
@@ -79,7 +40,6 @@ Vue.prototype.$ajaxPost = function (url, parameter, callback) {
 
 
 Vue.prototype.$ajaxGet = function (url, params, callback) {
-   console.log(1)
     if (localStorage.token) {
         var headers = {
             token: localStorage.token
@@ -102,14 +62,29 @@ const router = new vueRouter({
 });
 
 
-new Vue({
-    // el: ".",
 
-    // components: {
-    //     loginComponent: loginComponent,
-    //     canvasComponent: canvas,
-    //     wrapper: wrapper,
-    // },
+router.beforeEach((to, from, next) => {
+    if (to.meta.token) {
+        if (localStorage.token) {
+            next()
+        } else {
+            next({
+                path: '/',
+            })
+        }
+    } else if (to.meta.login) {
+        if (localStorage.token) {
+            next({
+                path: '/',
+            })
+        } else {
+            next()
+        }
+    }
+    next()
+});
+
+new Vue({
     store,
     router,
 }).$mount('#miaohu');

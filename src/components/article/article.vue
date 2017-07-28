@@ -228,30 +228,6 @@ import wrapper from "../wrapper"
 import axios from "axios"
 import { mapGetters } from "vuex"
 export default {
-    created() {
-
-        // this.$ajaxGet('user/info', '', (d) => {
-         
-        //     if (d.data.code == 200) {
-        //         ({
-        //             username: userInfo.username,
-        //             avatar: userInfo.avatar,
-        //             location: userInfo.location,
-        //             sex: userInfo.sex,
-        //             bio: userInfo.bio,
-        //         } = d.data.result)
-        //         this.$ajaxGet('user/question', '', (d) => {
-        //             if (d.data.code == 200) {
-        //                 console.log(d)
-
-        //             }
-        //         }
-        //         )
-        //     }
-        // }
-        // )
-    
-    },
     data() {
         return {
             userInfo:'',
