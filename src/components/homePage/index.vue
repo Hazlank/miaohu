@@ -21,12 +21,11 @@
                 <div class="avatar">
                   <img :src="userInfo.avatar" alt="用户头像" height="160" width="160">
                 </div>
-                <div></div>
               </div>
-              <div class="user-content">
+              <div class="user-content" v-show='!infoEditor'>
                 <header class="content-header">
                   <h1 class="title">
-                    <span class="name">pooder</span>
+                    <span class="name">{{userInfo.username}}</span>
                     <span class="headline">不爱介绍</span>
                   </h1>
                 </header>
@@ -40,15 +39,56 @@
   
                   </div>
                   <div class="profile-editor">
-                    <button>编辑个人资料</button>
+                    <router-link :to="`/user/${userInfo.username}/editor`" @click.native="eitor">编辑个人资料</router-link>
                   </div>
                 </footer>
+              </div>
+              <div class="user-editor" v-show='infoEditor'>
+                <div class="user-editorContent">
+                  <div style="position: relative;margin-bottom: 16px;">
+                    <div class="user-editorTitle">
+                      <span class="username">{{userInfo.username}}</span>
+                    </div>
+                    <router-link :to="`/user/${userInfo.username}/activities`" class="user-editorReturn" @click.native="eitor">
+                      返回我的主页
+                      <span class="user-editorTriangle"></span>
+                    </router-link>
+                  </div>
+                  <div class="user-editorlist">
+                    <div class="list">
+                      <h3>性别</h3>
+                    </div>
+                    <div class="list">
+                      <h3>一句话介绍
+                      </h3>
+                    </div>
+                    <div class="list">
+                      <h3>居住地
+                      </h3>
+                    </div>
+                    <div class="list">
+                      <h3>所在行业
+                      </h3>
+                    </div>
+                    <div class="list">
+                      <h3>职业经历
+                      </h3>
+                    </div>
+                    <div class="list">
+                      <h3>教育经历</h3>
+                    </div>
+                    <div class="list">
+                      <h3>个人简介
+                      </h3>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="profileMain ">
+      <div class="profileMain " v-show="!infoEditor">
         <div class="main-column table">
           <div class="main-cloumHeader">
             <ul>
@@ -137,6 +177,7 @@ export default {
   },
   data() {
     return {
+      infoEditor: false,
       userInfo: '',
       triangle: false,
       cloumList: {
@@ -202,16 +243,19 @@ export default {
     },
     router() {
       var operate = this.$route.params.operate;
-      var cloumList=this.cloumList;
+      var cloumList = this.cloumList;
       if (cloumList[operate]) {
-          for(let key in cloumList){
-           cloumList[key].state=false;
-          }
-          cloumList[operate].state=true;
+        for (let key in cloumList) {
+          cloumList[key].state = false;
+        }
+        cloumList[operate].state = true;
       } else {
         cloumList['activities'].state = 'true'
       }
     },
+    eitor() {
+      !this.infoEditor ? this.infoEditor = true : this.infoEditor = false;
+    }
   },
   mounted() {
     this.userInfo = this.$refs['homeHeader'].getInfo();

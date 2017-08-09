@@ -58,7 +58,6 @@ Vue.prototype.$ajaxGet = function (url, params, callback) {
 const router = new vueRouter({
     mode: 'history',
     routes,
-
 });
 
 

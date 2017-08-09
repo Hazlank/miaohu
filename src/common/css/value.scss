@@ -1,0 +1,75 @@
+$deepgray: #999;
+//----------------------css三角形-----------------------//
+@mixin triangleSame {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+@mixin triangle-up($topF, $topL, $width) {
+    &::before {
+        @include triangleSame;
+        border-left: $width solid transparent;
+        border-right: $width solid transparent;
+        border-bottom: $width solid #C3CCDC;
+        top: $topF;
+    }
+    &:after {
+        @include triangleSame;
+        border-left: $width solid transparent;
+        border-right: $width solid transparent;
+        border-bottom: $width solid white;
+        top: $topL;
+    }
+}
+
+@mixin triangle-down($topF, $topL, $width) {
+    &:before {
+        @include triangleSame;
+        border-left: $width solid transparent;
+        border-right: $width solid transparent;
+        border-top: $width solid #C3CCDC;
+        top: $topF;
+    }
+    &:after {
+        @include triangleSame;
+        border-left: $width solid transparent;
+        border-right: $width solid transparent;
+        border-top: $width solid white;
+        top: $topL;
+    }
+}
+
+@mixin triangle-right($left, $width) {
+    &:before {
+        @include triangleSame;
+        border-left: $width solid #C3CCDC;
+        border-top: $width solid transparent;
+        border-bottom: $width solid transparent;
+    }
+    &:after {
+        @include triangleSame;
+        border-left: $width solid white;
+        border-top: $width solid transparent;
+        border-bottom: $width solid transparent;
+        left: $left;
+    }
+}
+
+@mixin triangle-left($left, $width) {
+    &:before {
+        @include triangleSame;
+        border-right: $width solid #C3CCDC;
+        border-top: $width solid transparent;
+        border-bottom: $width solid transparent;
+    }
+    &:after {
+        @include triangleSame;
+        border-right: $width solid #C3CCDC;
+        border-top: $width solid transparent;
+        border-bottom: $width solid transparent;
+        left: $left;
+    }
+}
