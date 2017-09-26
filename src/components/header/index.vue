@@ -82,7 +82,7 @@ export default {
     },
     methods: {
         cancel(){
-            delete localStorage.token,location.href='/login'
+            delete localStorage.token,this.$router.go('/login');
         },
         getInfo(info){
              return this.userInfo;               

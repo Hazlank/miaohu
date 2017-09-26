@@ -208,7 +208,7 @@ export default {
                 url: `${apiDomain}/user/login`,
                 params: loginData,
             }).then(res => {
-                res.data.code == 200 ? (localStorage.token = res.data.result, location.href = '/article') : that.loginMsg.msg.message = '用户不存在或密码错误';
+                res.data.code == 200 ? (localStorage.token = res.data.result, this.$router.go('/article')) : that.loginMsg.msg.message = '用户不存在或密码错误';
             })
         },
         getCaptcha(type) {
